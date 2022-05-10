@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-context-form",
+  "name": "nextjs-form-context",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
