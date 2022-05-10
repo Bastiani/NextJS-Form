@@ -5,15 +5,15 @@ export const initialState = {
     {
       id: "1",
       name: "Rafael",
-      email: "rafacdb@gmail.com"
+      email: "rafacdb@gmail.com",
     },
     {
       id: "2",
       name: "João",
-      email: "rafacdb+test1@gmail.com"
-    }
+      email: "rafacdb+test1@gmail.com",
+    },
   ],
-  users: []
+  users: [],
 };
 
 const reducer = (state, action) => {
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
     case "SET_USERS":
       return {
         ...state,
-        users: action.value
+        users: [...state.users, action.payload],
       };
     default:
       break;
