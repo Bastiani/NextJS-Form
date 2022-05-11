@@ -1,30 +1,29 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import {
+  Input,
+  Button,
+  Divider,
+  Box,
+  Link as ChakraLink
+} from "@chakra-ui/react";
 
-import useUsersContext from "../hooks/user/useUsersContext";
+import useContextProvider from "../context/hooks/useContextProvider";
 
 export default function Users() {
-  const router = useRouter();
-  console.log("==========>>>>>>>>", typeof useUsersContext);
-  const [store, dispatch] = useUsersContext();
+  const [store, dispatch] = useContextProvider();
   console.log("======= ", store);
   return (
-    <div>
-      Hello World.{" "}
-      <button
-        onClick={() => router.push("/about", undefined, { shallow: true })}
-      >
-        About
-      </button>
-      <Link href="/about">
-        <a>About</a>
+    <Box p="1rem">
+      <Link href="/checkout/personal-data/">
+        <ChakraLink color="teal.500">Dados pessoais</ChakraLink>
       </Link>
+      <Divider />
       <br />
-      <input type="text" name="name" id="name" />
+      <Input type="text" name="name" id="name" />
       <br />
-      <input type="text" name="email" id="email" />
+      <Input type="text" name="email" id="email" />
       <br />
-      <button
+      <Button
         onClick={() => {
           console.log(
             "====== dispatch ",
@@ -34,13 +33,13 @@ export default function Users() {
             type: "SET_USERS",
             payload: {
               name: document.getElementById("name").value,
-              email: document.getElementById("email").value,
-            },
+              email: document.getElementById("email").value
+            }
           });
         }}
       >
         salvar
-      </button>
+      </Button>
       <ul>
         {store?.users?.map(({ name, email }) => (
           <li>
@@ -48,6 +47,6 @@ export default function Users() {
           </li>
         ))}
       </ul>
-    </div>
+    </Box>
   );
 }

@@ -1,9 +1,9 @@
-import Users from "./users";
+import Home from "./home";
 
 export default function IndexPage() {
   return (
     <>
-      <Users />
+      <Home />
     </>
   );
 }
