@@ -9,6 +9,17 @@ import useContextProvider from "../../../context/hooks/useContextProvider";
 const PersonalData = () => {
   const [store, dispatch] = useContextProvider();
   const { personalData } = store;
+  const validate = (values) => {
+    const errors = {
+      name: null
+    };
+
+    if (!values.name || values.name === "") {
+      console.log("==== error", values.name);
+      errors.name = "Obrigatório";
+    }
+    return errors;
+  };
   const formik = useFormik({
     initialValues: {
       name: personalData[0]?.name || "",
@@ -17,10 +28,9 @@ const PersonalData = () => {
       gender: personalData[0]?.gender || "",
       monthlyIncome: personalData[0]?.monthlyIncome || ""
     },
+    validate,
     validationSchema: Yup.object({
-      name: Yup.string()
-        .min(4, "Maior que 4 caracteres")
-        .required("Obrigatório!"),
+      // name: Yup.string().min(4, "Maior que 4 caracteres"),
       birthdate: Yup.string().required("Obrigatório!"),
       cpf: Yup.string().required("Obrigatório!"),
       gender: Yup.string().required("Obrigatório!"),
