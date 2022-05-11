@@ -28,9 +28,11 @@ const PersonalData = () => {
       gender: personalData[0]?.gender || "",
       monthlyIncome: personalData[0]?.monthlyIncome || ""
     },
-    validate,
+    // validate,
     validationSchema: Yup.object({
-      // name: Yup.string().min(4, "Maior que 4 caracteres"),
+      name: Yup.string()
+        .required("Obrigatório!")
+        .min(4, "Maior que 4 caracteres"),
       birthdate: Yup.string().required("Obrigatório!"),
       cpf: Yup.string().required("Obrigatório!"),
       gender: Yup.string().required("Obrigatório!"),
